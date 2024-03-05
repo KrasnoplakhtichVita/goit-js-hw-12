@@ -1,21 +1,144 @@
-.header {
-  padding: 20px 0;
+.iziToast {
+  max-width: 432px;
+  height: 88px;
 }
 
-.nav-list {
+.form {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 40px;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
-.nav-link {
+.form-input {
+  box-sizing: border-box;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 272px;
+  height: 40px;
+  margin-right: 8px;
+  padding: 8px 16px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #808080;
+}
+
+.form-input:hover {
+  border: 1px solid #000;
+}
+
+.form-input:focus {
+  outline: #4e75ff;
+  border: 1px solid #4e75ff;
+}
+
+.form-button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 91px;
+  height: 40px;
+  background: #4e75ff;
+  border: none;
+
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
 }
 
-.nav-link:hover,
-.nav-link:focus {
-  color: #747bff;
+.form-button:hover {
+  background: #6c8cff;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.gallery-item {
+  list-style: none;
+  width: 360px;
+  height: 200px;
+  position: relative;
+  border: 1px solid #808080;
+}
+
+.gallery-link {
+  text-decoration: none;
+}
+
+.gallery-image {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.gallery-thumb {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+  width: 360px;
+  height: 48px;
+  background: #fff;
+}
+
+.thumb-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  margin: 0;
+}
+
+.thumb-description {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  margin: 0;
+}
+
+.load {
+  position: relative;
+  margin: 0 auto;
+  width: 91px;
+  height: 40px;
+}
+
+.load-button {
+  position: absolute;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 91px;
+  height: 40px;
+  background: #4e75ff;
+  border: none;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.load-button:hover {
+  background: #6c8cff;
 }
