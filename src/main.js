@@ -18,9 +18,9 @@ const list = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 const loadBtn = document.querySelector('.load-button');
 
-let inputValue = form.elements.input;
-
 const FETCH_KEY = '42531953-f4fd7fd73c35883c60e461dd3';
+
+let inputValue = form.elements.input;
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
