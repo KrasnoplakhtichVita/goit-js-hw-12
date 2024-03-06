@@ -41,8 +41,8 @@ async function onBtnSubmit(evt) {
 
   try {
     const data = await fetchImages(FETCH_KEY, inputValue);
-    loader.classList.add('hidden');
     form.reset();
+    loader.classList.add('hidden');
 
     if (!data.hits.length) {
       return iziToast.show({
@@ -67,16 +67,22 @@ loadBtn.addEventListener('click', onBtnLoad);
 
 async function onBtnLoad() {
   renderPage();
-  loader.classList.remove('hidden');
+
   loadBtn.classList.add('hidden');
+  loader.classList.remove('hidden');
 
   try {
     const data = await fetchImages(FETCH_KEY, inputValue);
+    loadBtn.classList.remove('hidden');
     loader.classList.add('hidden');
 
-    const totalImages = page * per_page;
+    const totalPages = Math.ceil(data.totalHits / per_page);
 
-    if (totalImages >= data.totalHits) {
+    list.insertAdjacentHTML('beforeend', createMarkup(data.hits));
+    lightbox.refresh();
+
+    if (page >= totalPages) {
+      loadBtn.classList.add('hidden');
       return iziToast.show({
         message: "We're sorry, but you've reached the end of search results.",
         messageColor: 'white',
@@ -85,10 +91,6 @@ async function onBtnLoad() {
         iconUrl: icon,
       });
     }
-
-    list.insertAdjacentHTML('beforeend', createMarkup(data.hits));
-    lightbox.refresh();
-    loadBtn.classList.remove('hidden');
 
     const cardHeight = list.firstChild.getBoundingClientRect().height;
 
