@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export let page = 1;
-export let per_page = 100;
+export let per_page = 15;
 
 export async function fetchImages(key, value) {
   const searchParams = new URLSearchParams({
