@@ -57,6 +57,8 @@ async function onBtnSubmit(evt) {
 
     list.insertAdjacentHTML('beforeend', createMarkup(data.hits));
     lightbox.refresh();
+
+    checkLoadingImages(data);
     loadBtn.classList.remove('hidden');
   } catch (error) {
     console.log(error);
@@ -76,21 +78,10 @@ async function onBtnLoad() {
     loadBtn.classList.remove('hidden');
     loader.classList.add('hidden');
 
-    const totalPages = Math.ceil(data.totalHits / per_page);
-
     list.insertAdjacentHTML('beforeend', createMarkup(data.hits));
     lightbox.refresh();
 
-    if (page >= totalPages) {
-      loadBtn.classList.add('hidden');
-      return iziToast.show({
-        message: "We're sorry, but you've reached the end of search results.",
-        messageColor: 'white',
-        backgroundColor: '#ef4040',
-        position: 'topRight',
-        iconUrl: icon,
-      });
-    }
+    checkLoadingImages(data);
 
     const cardHeight = list.firstChild.getBoundingClientRect().height;
 
@@ -100,5 +91,20 @@ async function onBtnLoad() {
     });
   } catch (error) {
     console.log(error);
+  }
+}
+
+function checkLoadingImages(data) {
+  const totalPages = Math.ceil(data.totalHits / per_page);
+
+  if (page >= totalPages) {
+    loadBtn.classList.add('hidden');
+    return iziToast.show({
+      message: "We're sorry, but you've reached the end of search results.",
+      messageColor: 'white',
+      backgroundColor: '#ef4040',
+      position: 'topRight',
+      iconUrl: icon,
+    });
   }
 }
