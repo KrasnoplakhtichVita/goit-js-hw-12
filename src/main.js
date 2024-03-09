@@ -44,9 +44,6 @@ async function onBtnSubmit(evt) {
     form.reset();
     loader.classList.add('hidden');
 
-    console.log(data.totalHits);
-    console.log(data.hits.length);
-
     if (!data.hits.length) {
       return iziToast.show({
         message:
@@ -61,9 +58,12 @@ async function onBtnSubmit(evt) {
     list.insertAdjacentHTML('beforeend', createMarkup(data.hits));
     lightbox.refresh();
 
-    data.hits.length < 15
-      ? loadBtn.classList.add('hidden')
-      : loadBtn.classList.remove('hidden');
+    if (data.hits.length < 15) {
+      loadBtn.classList.add('hidden');
+      finishForDownload();
+    } else {
+      loadBtn.classList.remove('hidden');
+    }
   } catch (error) {
     console.log(error);
   }
@@ -89,13 +89,7 @@ async function onBtnLoad() {
 
     if (page >= totalPages) {
       loadBtn.classList.add('hidden');
-      return iziToast.show({
-        message: "We're sorry, but you've reached the end of search results.",
-        messageColor: 'white',
-        backgroundColor: '#ef4040',
-        position: 'topRight',
-        iconUrl: icon,
-      });
+      finishForDownload();
     }
 
     const cardHeight = list.firstChild.getBoundingClientRect().height;
@@ -107,4 +101,14 @@ async function onBtnLoad() {
   } catch (error) {
     console.log(error);
   }
+}
+
+function finishForDownload() {
+  return iziToast.show({
+    message: "We're sorry, but you've reached the end of search results.",
+    messageColor: 'white',
+    backgroundColor: '#ef4040',
+    position: 'topRight',
+    iconUrl: icon,
+  });
 }
